@@ -29,9 +29,7 @@ def buildTree(d, level = 0, skipPipe = False):
                     raise Exception('Invalid brackets')
                 if len(stack) == 1:
                     first = buildSub(d[start_index:stack[0]], level, first, skipPipe)
-                    # check if we see the last closing bracket == the last child
                     skipPipe = True if (level == 0 and i == len(d)-1) else skipPipe 
-                    # strip is important to get rid of blanks between brackets
                     buildTree(d[stack[0] + 1:i].strip(), level + 1, skipPipe)
                     start_index = i + 1
                 stack.pop()
